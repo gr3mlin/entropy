@@ -1,9 +1,27 @@
-README file.
+README
 
-When compiling dont forget to add the -lpcap flag
-gcc main.c -lpcap -o main
-sudo ./main or you wont access your device.
+Description of Project:
+In certain networks it may be useful to analyze network traffic for abnormal behavior. One method of doing this that is not signature based is to calculate the entropy of the datagrams across an ethernet network and then graph them relative to their size. We want to include the entire datagram because abnormalities in the header may be of interest. After graphing the data it is useful to use unsupervised machine learning algorithms to identify noise. One such common method is DBSCAN. Other supervised and unsupervised methods may be used in place or in conjunction with this technique in order to analyze the dataset and prioritize human analysis.
 
+INSTALL
+
+You will need to compile the following files with gcc or a suitable compiler against your target system:
+main.c
+entrop
+
+When compiling dont forget to add the -lm and -lpcap flag!
+
+Example:
+gcc main.c -lm -lpcap -o main
+
+Run:
+sudo ./main or you will crash and/or not open the interface.
+
+
+
+Notes:
+Live Plotting:
+sudo ./main | perl ../driveGnuPlots.pl 2 50 50 "Size" "Entropy"
 
 
 RESOURCES:
