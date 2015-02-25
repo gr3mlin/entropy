@@ -34,7 +34,7 @@ float entropy = 0.0;
 
 //CTRL-C Handler
 void close_handler(int s){
-           printf(" Closing\n",s);
+           printf("Closing\n");
            fclose(file);
            exit(0); 
 }
@@ -72,8 +72,8 @@ void callback(u_char *trash, const struct pcap_pkthdr *passed_header, const u_ch
     //printf("Packet count: %d\n", count);
     
     //fprintf(file,"%ld, %ld.%ld, %d, ", count, passed_header->ts.tv_sec, passed_header->ts.tv_usec, passed_header->len);
-    int i=0;
     
+    //int i=0;
     /*while(i <= intkPktLength){
         fprintf(file,"%x, ", packetBody[i]);
         i++;

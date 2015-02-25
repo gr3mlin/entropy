@@ -1,0 +1,8 @@
+#!/bin/bash -x
+echo "Authenticate SUDO for these installs!"
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install -y gcc libpcap-dev gnuplot gnuplot-x11 python-pip python-dev python-setuptools libatlas-dev python-matplotlib libatlas3gf-base build-essential wireshark
+sudo pip install -U numpy scipy pandas scikit-learn
+echo "All complete and good to go! RLTW!"
+#Might also want this if playing with wireshark: sudo apt-get build-dep wireshark
