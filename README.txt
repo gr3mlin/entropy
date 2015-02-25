@@ -24,6 +24,7 @@ Live Plotting:
 sudo ./main | perl ../driveGnuPlots.pl 2 50 50 "Size" "Entropy"
 
 
+
 RESOURCES:
 DBSCAN
 http://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/Density-Based_Clustering
