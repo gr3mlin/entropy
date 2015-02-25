@@ -17,7 +17,7 @@ from sklearn.preprocessing import StandardScaler
 
 import pandas as pd
 #Change the following input file name to point/read the packet and entropy file you created. Need to add this to arguement.
-my_data = pd.read_csv("capture1_trunc.txt", sep=",", header = None)
+my_data = pd.read_csv("capture.txt", sep=",", header = None)
 print my_data.values
 X = StandardScaler().fit_transform(my_data)
 

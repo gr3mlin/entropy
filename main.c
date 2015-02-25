@@ -34,8 +34,8 @@ float entropy = 0.0;
 
 //CTRL-C Handler
 void close_handler(int s){
-           //printf(" Closing\n",s);
-           //fclose(file);
+           printf(" Closing\n",s);
+           fclose(file);
            exit(0); 
 }
 
@@ -46,8 +46,8 @@ void callback(u_char *trash, const struct pcap_pkthdr *passed_header, const u_ch
 {
     static long count = 1;
     int intPktLength = passed_header->len;
-    //printf("Time: %ld.%ld\n", passed_header->ts.tv_sec, passed_header->ts.tv_usec);
-    //printf("Captured a packet with length of [%d]\n", intPktLength);
+    printf("Time: %ld.%ld\n", passed_header->ts.tv_sec, passed_header->ts.tv_usec);
+    printf("Captured a packet with length of [%d]\n", intPktLength);
     eptr = (struct ether_header *) passed_packet;
     //if (ntohs (eptr->ether_type) == ETHERTYPE_IP){
     //        printf("This is an IP packet\n");
@@ -68,7 +68,7 @@ void callback(u_char *trash, const struct pcap_pkthdr *passed_header, const u_ch
     
     entropy = shannon_H(ptrpacketBody,(long) intPktLength);
     
-    //printf("\nPacket Body Entropy: %f\n", entropy);
+    printf("\nPacket Body Entropy: %f\n", entropy);
     //printf("Packet count: %d\n", count);
     
     //fprintf(file,"%ld, %ld.%ld, %d, ", count, passed_header->ts.tv_sec, passed_header->ts.tv_usec, passed_header->len);
@@ -79,10 +79,10 @@ void callback(u_char *trash, const struct pcap_pkthdr *passed_header, const u_ch
         i++;
     }
     */
-    //fprintf(file, "%d, %f\n", passed_header->len, entropy);
-    printf("0:%d\n", passed_header->len);
-    printf("1:%f\n", entropy);
-    fflush(stdout);
+    fprintf(file, "%d, %f\n", passed_header->len, entropy);
+    //printf("0:%d\n", passed_header->len);
+    //printf("1:%f\n", entropy);
+    //fflush(stdout);
     count++;
 }
 
@@ -119,12 +119,12 @@ int main(int argc, char **argv)
     pcap_setfilter(handle, &filter);
 
     /* Initialize the file we will write too */
-    //file = fopen("capture.txt", "w"); //define the filename as an argv
+    file = fopen("capture.txt", "w"); //define the filename as an argv
     //fprintf(file,"Packet#, Time, Packet Length, Entropy\n");
-    //if (file==NULL){
-        //printf("Error opening file\n");
-        //return(1);
-    //}
+    if (file==NULL){
+        printf("Error opening file\n");
+        return(1);
+    }
 
 
     /* Grab a packet */
