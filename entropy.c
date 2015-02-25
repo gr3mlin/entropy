@@ -4,7 +4,7 @@
 #include <string.h>
 #include <math.h>
  
-#define MAXLEN 100 //maximum string length
+#define MAXLEN 1522 //maximum string length
  
 int makehist(char *S,int *hist,int len){
 	int wherechar[256];

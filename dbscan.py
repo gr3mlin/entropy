@@ -1,5 +1,10 @@
+# TITLE: Density Based Spatial Clustering of Applications with Noise adapted for Entropy applications.
+# DATE: 4 FEB 2015
+# AUTHOR: GR3MLIN
+# CREDIT: Significant portions of this code are adapted from: http://scikit-learn.org/stable/auto_examples/cluster/plot_dbscan.html
+
+
 #/usr/include/python
-#http://scikit-learn.org/stable/auto_examples/cluster/plot_dbscan.html
 print(__doc__)
 
 import numpy as np
@@ -10,19 +15,12 @@ from sklearn.datasets.samples_generator import make_blobs
 from sklearn.preprocessing import StandardScaler
 
 
-##############################################################################
-# Generate sample data
-#centers = [[1, 2], [-1, -1], [1, -1]]
-#X, labels_true = make_blobs(n_samples=1750, centers=centers, cluster_std=0.48,
-#                            random_state=0)
-#X = StandardScaler().fit_transform(X)
 import pandas as pd
+#Change the following input file name to point/read the packet and entropy file you created. Need to add this to arguement.
 my_data = pd.read_csv("capture1_trunc.txt", sep=",", header = None)
 print my_data.values
 X = StandardScaler().fit_transform(my_data)
 
-
-##############################################################################
 # Compute DBSCAN
 db = DBSCAN(eps=0.1, min_samples=10).fit(X)
 core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
@@ -33,17 +31,9 @@ labels = db.labels_
 n_clusters_ = len(set(labels)) - (1 if -1 in labels else 0)
 
 print('Estimated number of clusters: %d' % n_clusters_)
-#print("Homogeneity: %0.3f" % metrics.homogeneity_score(labels_true, labels))
-#print("Completeness: %0.3f" % metrics.completeness_score(labels_true, labels))
-#print("V-measure: %0.3f" % metrics.v_measure_score(labels_true, labels))
-#print("Adjusted Rand Index: %0.3f"
-#      % metrics.adjusted_rand_score(labels_true, labels))
-#print("Adjusted Mutual Information: %0.3f"
-#      % metrics.adjusted_mutual_info_score(labels_true, labels))
 print("Silhouette Coefficient: %0.3f"
       % metrics.silhouette_score(X, labels))
 
-##############################################################################
 # Plot result
 import matplotlib.pyplot as plt
 
